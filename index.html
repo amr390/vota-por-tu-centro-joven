@@ -5,161 +5,92 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página de Prueba - GitHub Pages</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background: #f4f4f4; }
-        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        h1 { color: #333; text-align: center; }
-        .button { display: inline-block; background: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin: 10px 0; }
-        .button:hover { background: #0056b3; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            line-height: 1.6; 
+            color: #333; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { 
+            max-width: 800px; 
+            margin: 0 auto; 
+            background: white; 
+            padding: 40px; 
+            border-radius: 15px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        h1 { 
+            color: #2c3e50; 
+            text-align: center; 
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+        }
+        h2 {
+            color: #34495e;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        p { margin-bottom: 15px; }
+        .button { 
+            display: inline-block; 
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white; 
+            padding: 12px 25px; 
+            text-decoration: none; 
+            border-radius: 25px; 
+            margin: 10px 10px 10px 0;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        .button:hover { 
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+        .projects {
+            display: grid;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .project-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #3498db;
+        }
+        .status {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+            font-weight: 600;
+        }
+        .emoji { font-size: 1.2em; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🚀 Página de Prueba</h1>
-        <p>Esta es una página web de prueba alojada en GitHub Pages.</p>
-        <p><strong>Fecha de creación:</strong> 17 de Noviembre, 2025</p>
+        <h1><span class="emoji">🚀</span> Proyectos Web</h1>
+        <p>Repositorio de proyectos web alojados en GitHub Pages.</p>
+        <p><strong>Última actualización:</strong> 17 de Noviembre, 2025</p>
         
-        <h2>Proyectos Disponibles:</h2>
-        <ul>
-            <li><a href="votacion_centro_joven.html" class="button">Sistema de Votación Centro Joven</a></li>
-        </ul>
+        <h2>Proyectos Disponibles</h2>
+        <div class="projects">
+            <div class="project-card">
+                <h3><span class="emoji">🗳️</span> Sistema de Votación Centro Joven</h3>
+                <p>Aplicación web para votación ciudadana sobre la ubicación del nuevo centro joven municipal.</p>
+                <a href="./votacion_centro_joven.html" class="button">Ver Proyecto</a>
+            </div>
+        </div>
         
-        <p><em>Repositorio funcionando correctamente ✅</em></p>
+        <div class="status">
+            <span class="emoji">✅</span> GitHub Pages funcionando correctamente
+        </div>
     </div>
-</body>
-</html>
-
-    <section id="nuestra-historia" class="section story-section">
-        <div class="container">
-            <h2>Nuestra Historia</h2>
-            <div class="story-grid">
-                <div class="story-item">
-                    <h3>El Inicio</h3>
-                    <img src="./images/story_meeting.jpg" alt="Primer encuentro" class="story-photo">
-                    <p>Aquí puedes contar cómo se conocieron. Un café, un evento, amigos en común... el inicio de todo.</p>
-                </div>
-                <div class="story-item">
-                    <h3>El Camino Juntos</h3>
-                    <img src="./images/story_journey.jpg" alt="Nuestro camino juntos" class="story-photo">
-                    <p>Describe algunos momentos clave de su relación: viajes, desafíos superados, risas compartidas, etc.</p>
-                </div>
-                <div class="story-item">
-                    <h3>El Gran Paso</h3>
-                    <img src="./images/story_proposal.jpg" alt="La propuesta" class="story-photo">
-                    <p>El momento de la propuesta. ¿Fue una sorpresa? ¿Un lugar especial? ¡Los detalles que hicieron ese día inolvidable!</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="detalles-evento" class="section details-section">
-        <div class="container">
-            <h2>Detalles del Evento</h2>
-
-            <div class="detail-item">
-                <h3><i class="fas fa-church icon"></i> Ceremonia</h3>
-                <p><strong>Fecha:</strong> Sábado, 26 de Octubre de 2025</p>
-                <p><strong>Hora:</strong> 18:00h</p>
-                <p><strong>Lugar:</strong> Iglesia de San Juan Bautista, Hellín</p>
-                <p>Calle de la Iglesia, 1, 02400 Hellín, Albacete</p>
-                <p><a href="https://maps.app.goo.gl/g6g1mGqH4W5nK7dNA" target="_blank" class="button button-small"><i class="fas fa-map-marker-alt"></i> Ver Ubicación</a></p>
-            </div>
-
-            <div class="detail-item">
-                <h3><i class="fas fa-glass-cheers icon"></i> Celebración (Banquete)</h3>
-                <p><strong>Hora:</strong> 20:30h (aproximadamente)</p>
-                <p><strong>Lugar:</strong> Finca El Robledal</p>
-                <p>Camino del Robledal, S/N, 02400 Hellín, Albacete</p>
-                <p><a href="https://maps.app.goo.gl/h2pQ4Z6sV8dE5XwW9" target="_blank" class="button button-small"><i class="fas fa-map-marker-alt"></i> Ver Ubicación</a></p>
-                <ul>
-                    <li><i class="fas fa-info-circle"></i> Habrá servicio de autobús desde la Iglesia a la Finca.</li>
-                </ul>
-            </div>
-
-        </div>
-    </section>
-
-    <section id="confirmacion" class="section rsvp-section">
-        <div class="container">
-            <h2>Confirma tu Asistencia</h2>
-            <p>Por favor, haznos saber si podrás acompañarnos. ¡Tu presencia es el mejor regalo!</p>
-
-            <div class="rsvp-options">
-                <a href="https://wa.me/XXXXXXXXXXX?text=Hola!%20Me%20gustar%C3%ADa%20confirmar%20mi%20asistencia%20a%20vuestra%20boda." class="button whatsapp-button" target="_blank">
-                    <i class="fab fa-whatsapp"></i> Confirmar por WhatsApp
-                </a>
-                <p class="or-text">o</p>
-            </div>
-
-            <div class="rsvp-form">
-                <form id="rsvp-form-custom" action="TU_WEB_APP_URL_AQUI" method="POST">
-                    <div class="form-group">
-                        <label for="nombrecompleto">Nombre Completo:</label>
-                        <input type="text" id="nombrecompleto" name="nombrecompleto" required>
-                    </div>
-
-                    <div class="form-group radio-group">
-                        <label>¿Asistirás a la ceremonia?</label>
-                        <div>
-                            <input type="radio" id="ceremonia-si" name="asistenciaceremonia" value="Sí" required>
-                            <label for="ceremonia-si">Sí</label>
-                            <input type="radio" id="ceremonia-no" name="asistenciaceremonia" value="No">
-                            <label for="ceremonia-no">No</label>
-                        </div>
-                    </div>
-
-                    <div class="form-group radio-group">
-                        <label>¿Asistirás al banquete?</label>
-                        <div>
-                            <input type="radio" id="banquete-si" name="asistenciabanquete" value="Sí" required>
-                            <label for="banquete-si">Sí</label>
-                            <input type="radio" id="banquete-no" name="asistenciabanquete" value="No">
-                            <label for="banquete-no">No</label>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="numacompanantes">Número de acompañantes (incluyéndote a ti si aplicas):</label>
-                        <input type="number" id="numacompanantes" name="numacompanantes" min="0" value="0" required>
-                        <small>Indica 0 si solo vienes tú.</small>
-                    </div>
-
-                    <div class="form-group radio-group">
-                        <label for="necesitatransporte">¿Necesitas transporte desde la Iglesia a la Finca El Robledal?</label>
-                        <div>
-                            <input type="radio" id="transporte-si" name="necesitatransporte" value="Sí" required>
-                            <label for="transporte-si">Sí</label>
-                            <input type="radio" id="transporte-no" name="necesitatransporte" value="No">
-                            <label for="transporte-no">No</label>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="alergias">Alergias o restricciones dietéticas (opcional):</label>
-                        <textarea id="alergias" name="alergias" rows="3" placeholder="Ej: Vegetariano, intolerancia a la lactosa, sin gluten..."></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="cancion">Recomiéndanos una canción para la fiesta (¡en español!):</label>
-                        <input type="text" id="cancion" name="cancion" placeholder="Título de la canción - Artista">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="mensaje">Mensaje para los novios (opcional):</label>
-                        <textarea id="mensaje" name="mensaje" rows="5" placeholder="Deja un mensaje bonito para los novios..."></textarea>
-                    </div>
-
-                    <button type="submit" class="button">Enviar Confirmación</button>
-                    <p id="form-message" class="form-message"></p>
-                </form>
-            </div>
-            <p class="final-message">¡Esperamos celebrar contigo!</p>
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; [Año] [Nombre Novios]. Todos los derechos reservados.</p>
-    </footer>
-
-    <script src="script.js"></script>
 </body>
 </html>
