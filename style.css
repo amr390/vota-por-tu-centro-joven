@@ -1,0 +1,704 @@
+/* Importar fuentes de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap');
+
+:root {
+    /* Paleta de colores refinada para un toque más sofisticado */
+    --primary-color: #4A605B; /* Un verde oscuro elegante, casi un verde pino profundo */
+    --secondary-color: #FDFDFD; /* Blanco muy suave, casi crema */
+    --text-color: #383838; /* Gris oscuro para el texto principal */
+    --light-text-color: #555; /* Gris medio para texto secundario */
+    --accent-color: #A08040; /* Un dorado suave y cálido, no brillante */
+    --background-light: #F4F4F4; /* Fondo muy claro para secciones */
+    --shadow-light: rgba(0, 0, 0, 0.08); /* Sombra muy sutil */
+    --shadow-medium: rgba(0, 0, 0, 0.12); /* Sombra un poco más pronunciada */
+}
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--secondary-color);
+    overflow-x: hidden; /* Evita el scroll horizontal */
+    -webkit-font-smoothing: antialiased; /* Suavizado de fuentes para macOS/iOS */
+    -moz-osx-font-smoothing: grayscale; /* Suavizado de fuentes para Firefox */
+}
+
+.container {
+    max-width: 1000px; /* Un poco más ancho para más espacio */
+    margin: 0 auto;
+    padding: 30px; /* Más padding para una sensación más espaciosa */
+}
+
+/* Header - Hero Section */
+.hero {
+    background: url('./images/hero_background.jpg') no-repeat center center/cover; /* Reemplaza con tu imagen de fondo */
+    color: white;
+    text-align: center;
+    padding: 120px 20px; /* Más padding para más altura */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.55); /* Capa oscura más intensa para que el texto resalte */
+    z-index: 0;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 900px; /* Más ancho para contenido */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.05); /* Fondo sutil para el contenido hero */
+    border-radius: 15px;
+    backdrop-filter: blur(3px); /* Ligero desenfoque para el contenido */
+    box-shadow: 0 10px 30px var(--shadow-medium);
+}
+
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 6em; /* Aún más grande para impacto */
+    margin-bottom: 20px;
+    text-shadow: 3px 3px 10px rgba(0,0,0,0.8); /* Sombra más pronunciada */
+    letter-spacing: 3px; /* Más espaciado entre letras */
+    line-height: 1.1;
+}
+
+.hero .date {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2em;
+    margin-bottom: 50px;
+    font-weight: 400;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+    letter-spacing: 1.5px;
+}
+
+/* Countdown */
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: 40px; /* Más espacio entre los elementos del contador */
+    margin-bottom: 60px;
+    background-color: rgba(255, 255, 255, 0.15); /* Fondo más visible */
+    padding: 30px 40px; /* Más padding */
+    border-radius: 15px;
+    backdrop-filter: blur(7px); /* Efecto de desenfoque más fuerte */
+    box-shadow: 0 0 25px var(--shadow-medium);
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Borde sutil */
+}
+
+.countdown-timer {
+    font-family: 'Playfair Display', serif;
+    font-size: 3em; /* Más grande */
+    color: white;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+    font-weight: 700; /* Más grueso */
+}
+
+
+/* General Buttons */
+.button {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: white;
+    padding: 16px 35px; /* Más padding */
+    text-decoration: none;
+    border-radius: 10px; /* Bordes más redondeados */
+    transition: background-color 0.4s ease, transform 0.3s ease, box-shadow 0.4s ease;
+    font-weight: bold;
+    font-size: 1.2em; /* Más grande */
+    border: none;
+    cursor: pointer;
+    letter-spacing: 0.8px;
+    box-shadow: 0 6px 15px var(--shadow-medium); /* Sombra más pronunciada */
+    text-transform: uppercase; /* Texto en mayúsculas */
+}
+
+.button:hover {
+    background-color: #8C6F35; /* Un tono un poco más oscuro al pasar el ratón */
+    transform: translateY(-5px); /* Desplazamiento sutil */
+    box-shadow: 0 10px 20px var(--shadow-medium);
+}
+
+.button-small {
+    padding: 10px 22px;
+    font-size: 1em;
+    margin-top: 18px;
+    border-radius: 8px;
+}
+
+/* Sections */
+.section {
+    padding: 100px 0; /* Más padding arriba y abajo */
+    text-align: center;
+    position: relative;
+    overflow: hidden; /* Para contener los posibles fondos o efectos */
+}
+
+.section:nth-of-type(odd) { /* Para alternar colores de fondo */
+    background-color: var(--background-light);
+}
+
+.section:nth-of-type(even) {
+    background-color: var(--secondary-color);
+}
+
+.section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 4em; /* Más grande */
+    color: var(--primary-color);
+    margin-bottom: 70px; /* Más espacio */
+    position: relative;
+    display: inline-block;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+}
+
+.section h2::after {
+    content: '';
+    display: block;
+    width: 100px; /* Más ancho */
+    height: 6px; /* Más grueso */
+    background-color: var(--accent-color);
+    margin: 25px auto 0; /* Más margen */
+    border-radius: 4px;
+}
+
+/* Story Section */
+.story-section {
+    /* Fondo definido por nth-of-type */
+}
+
+.story-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Elementos un poco más grandes */
+    gap: 60px; /* Mayor espacio entre elementos */
+    margin-top: 50px;
+}
+
+.story-item {
+    background-color: white;
+    padding: 40px; /* Más padding */
+    border-radius: 15px; /* Más redondeado */
+    box-shadow: 0 10px 30px var(--shadow-light); /* Sombra más sutil pero efectiva */
+    text-align: left;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.5s ease; /* Transición más suave */
+    border: 1px solid rgba(0,0,0,0.03); /* Borde aún más sutil */
+}
+
+.story-item:hover {
+    transform: translateY(-15px); /* Mayor desplazamiento */
+    box-shadow: 0 15px 40px var(--shadow-medium); /* Sombra más pronunciada al hover */
+}
+
+.story-item h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--primary-color);
+    font-size: 2.4em; /* Más grande */
+    margin-bottom: 25px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 12px;
+}
+
+.story-item h3::after {
+    content: '';
+    display: block;
+    width: 60px; /* Más ancho */
+    height: 4px; /* Más grueso */
+    background-color: var(--accent-color);
+    margin: 15px auto 0;
+    border-radius: 3px;
+}
+
+.story-photo {
+    width: 100%;
+    height: 280px; /* Altura un poco mayor para las imágenes */
+    object-fit: cover;
+    border-radius: 12px; /* Bordes más redondeados */
+    margin-bottom: 30px;
+    box-shadow: 0 8px 20px var(--shadow-light);
+    border: 1px solid rgba(0,0,0,0.05); /* Borde sutil */
+}
+
+.story-item p {
+    font-size: 1.15em; /* Ligeramente más grande */
+    line-height: 1.9; /* Mayor interlineado para legibilidad */
+    color: var(--light-text-color);
+}
+
+/* Details Section */
+.details-section {
+    /* Fondo definido por nth-of-type */
+}
+
+.detail-item {
+    margin-bottom: 60px;
+    padding: 50px; /* Más padding */
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px var(--shadow-light);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;
+    border: 1px solid rgba(0,0,0,0.03);
+}
+
+.detail-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 30px var(--shadow-medium);
+}
+
+.detail-item h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--primary-color);
+    font-size: 2.5em; /* Más grande */
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+.detail-item .icon {
+    color: var(--accent-color);
+    font-size: 1.3em;
+    margin-right: 20px; /* Más espacio */
+}
+
+.detail-item p {
+    margin-bottom: 15px;
+    color: var(--light-text-color);
+    font-size: 1.2em; /* Ligeramente más grande */
+    line-height: 1.8;
+}
+
+.detail-item strong {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.detail-item a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.detail-item a:hover {
+    color: #8C6F35;
+    text-decoration: underline;
+}
+
+.detail-item ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 25px;
+    text-align: center;
+    font-size: 1.15em;
+    color: var(--light-text-color);
+}
+
+.detail-item ul li {
+    margin-bottom: 12px;
+}
+
+/* RSVP Section */
+.rsvp-section {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 100px 20px;
+}
+
+.rsvp-section h2 {
+    color: white;
+}
+
+.rsvp-section h2::after {
+    background-color: var(--accent-color);
+}
+
+.rsvp-section p {
+    font-size: 1.4em; /* Más grande */
+    margin-bottom: 50px; /* Más espacio */
+    max-width: 750px; /* Más ancho */
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.95); /* Texto más blanco */
+    font-weight: 300; /* Más ligero */
+}
+
+.rsvp-options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px; /* Más espacio */
+    max-width: 550px;
+    margin: 0 auto 60px;
+}
+
+.whatsapp-button {
+    background-color: #25D366; /* Color de WhatsApp */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px; /* Más espacio en el botón */
+    padding: 18px 40px; /* Más padding */
+    font-size: 1.4em; /* Más grande */
+    border-radius: 10px;
+    box-shadow: 0 6px 15px var(--shadow-medium);
+}
+
+.whatsapp-button:hover {
+    background-color: #1DA851;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px var(--shadow-medium);
+}
+
+.whatsapp-button .fab {
+    font-size: 1.8em; /* Icono más grande */
+}
+
+.or-text {
+    font-size: 1.4em;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.85); /* Texto más blanco */
+    margin: 0;
+}
+
+.rsvp-form {
+    background-color: rgba(255, 255, 255, 0.99); /* Casi blanco puro para el formulario */
+    padding: 55px; /* Más padding */
+    border-radius: 15px;
+    box-shadow: 0 10px 35px var(--shadow-medium);
+    width: 100%;
+    max-width: 700px; /* Más ancho */
+    margin: 0 auto;
+    text-align: left;
+    color: var(--text-color);
+    border: 1px solid rgba(0,0,0,0.04);
+}
+
+.rsvp-form .form-group {
+    margin-bottom: 30px; /* Más espacio entre grupos */
+}
+
+.rsvp-form label {
+    display: block;
+    margin-bottom: 12px;
+    font-weight: 700; /* Más grueso */
+    color: var(--primary-color);
+    font-size: 1.15em;
+}
+
+.rsvp-form input[type="text"],
+.rsvp-form input[type="email"],
+.rsvp-form input[type="number"],
+.rsvp-form select,
+.rsvp-form textarea {
+    width: 100%;
+    padding: 16px; /* Más padding */
+    border: 1px solid #e0e0e0; /* Borde más claro */
+    border-radius: 8px;
+    font-size: 1.1em; /* Más grande */
+    font-family: 'Lato', sans-serif;
+    color: var(--text-color);
+    background-color: #ffffff; /* Fondo blanco */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.rsvp-form input:focus,
+.rsvp-form select:focus,
+.rsvp-form textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 10px rgba(160, 128, 64, 0.4); /* Sombra más pronunciada */
+}
+
+.rsvp-form textarea {
+    resize: vertical;
+    min-height: 100px; /* Altura mínima un poco mayor */
+}
+
+.rsvp-form .radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.rsvp-form .radio-group > div {
+    display: flex;
+    gap: 25px; /* Más espacio */
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.rsvp-form .radio-group input[type="radio"] {
+    width: auto;
+    margin-right: 8px; /* Más espacio */
+    transform: scale(1.1); /* Radio button ligeramente más grande */
+}
+
+.rsvp-form .radio-group label {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 400; /* Labels de radio más ligeros */
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+
+.rsvp-form button[type="submit"] {
+    width: auto;
+    padding: 18px 40px; /* Más padding */
+    font-size: 1.4em; /* Más grande */
+    margin-top: 30px;
+    box-shadow: 0 8px 20px var(--shadow-medium);
+}
+
+.form-message {
+    margin-top: 35px;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-align: center;
+    font-size: 1.3em;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+.form-message.success {
+    color: #28a745;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+}
+.form-message.error {
+    color: #dc3545;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+}
+
+.final-message {
+    margin-top: 60px;
+    font-size: 1.8em; /* Más grande */
+    font-style: italic;
+    color: white;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+    font-weight: 300;
+}
+
+
+/* Footer */
+footer {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 35px 0;
+    font-size: 1.1em;
+    border-top: 1px solid rgba(255,255,255,0.15);
+}
+
+/* Responsive Design */
+@media (max-width: 960px) {
+    .hero h1 {
+        font-size: 5em;
+    }
+    .hero .date {
+        font-size: 2em;
+    }
+    .countdown {
+        gap: 30px;
+        padding: 25px 30px;
+    }
+    .countdown-timer {
+        font-size: 2.5em;
+    }
+    .section h2 {
+        font-size: 3.5em;
+    }
+    .story-grid {
+        gap: 40px;
+    }
+    .story-item {
+        padding: 30px;
+    }
+    .story-item h3 {
+        font-size: 2.2em;
+    }
+    .story-photo {
+        height: 250px;
+    }
+    .detail-item {
+        padding: 40px;
+    }
+    .detail-item h3 {
+        font-size: 2.2em;
+    }
+    .rsvp-section p {
+        font-size: 1.2em;
+    }
+    .whatsapp-button {
+        padding: 15px 35px;
+        font-size: 1.3em;
+    }
+    .rsvp-form {
+        padding: 45px;
+    }
+    .rsvp-form button[type="submit"] {
+        padding: 16px 35px;
+        font-size: 1.3em;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 4em;
+    }
+
+    .hero .date {
+        font-size: 1.6em;
+    }
+
+    .countdown {
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .countdown-timer {
+        font-size: 2em;
+    }
+
+    .section h2 {
+        font-size: 3em;
+    }
+
+    .story-grid {
+        grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+        gap: 30px;
+    }
+
+    .story-item {
+        padding: 25px;
+    }
+
+    .story-item h3 {
+        font-size: 1.8em;
+    }
+
+    .story-photo {
+        height: 200px;
+    }
+
+    .detail-item {
+        margin-bottom: 40px;
+        padding: 30px;
+    }
+
+    .detail-item h3 {
+        font-size: 2em;
+    }
+
+    .rsvp-section p {
+        font-size: 1.1em;
+    }
+
+    .whatsapp-button {
+        padding: 12px 25px;
+        font-size: 1.2em;
+    }
+
+    .rsvp-form {
+        padding: 30px;
+    }
+    .rsvp-form button[type="submit"] {
+        padding: 14px 30px;
+        font-size: 1.2em;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 20px;
+    }
+    .hero h1 {
+        font-size: 3em;
+    }
+
+    .hero .date {
+        font-size: 1.3em;
+    }
+
+    .countdown {
+        flex-wrap: wrap; /* Envuelve los elementos del contador */
+        gap: 15px;
+        padding: 15px;
+    }
+    .countdown-timer {
+        font-size: 1.8em;
+    }
+
+    .button {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+
+    .section {
+        padding: 50px 0;
+    }
+
+    .section h2 {
+        font-size: 2.5em;
+        margin-bottom: 40px;
+    }
+
+    .story-item h3 {
+        font-size: 1.6em;
+    }
+
+    .detail-item h3 {
+        font-size: 1.8em;
+    }
+    .detail-item .icon {
+        font-size: 1.1em;
+    }
+
+
+    .rsvp-section p {
+        font-size: 1em;
+        margin-bottom: 30px;
+    }
+
+    .whatsapp-button {
+        padding: 10px 20px;
+        font-size: 1.1em;
+    }
+
+    .rsvp-form {
+        padding: 20px;
+    }
+    .rsvp-form button[type="submit"] {
+        padding: 12px 25px;
+        font-size: 1.1em;
+    }
+
+    .final-message {
+        font-size: 1.3em;
+    }
+
+    .rsvp-form .radio-group > div {
+        flex-direction:
