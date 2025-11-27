@@ -1,140 +1,147 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Votación Centro Joven - Ayuntamiento</title>
-    <link rel="stylesheet" href="./style_votacion.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
-<body>
-
+    <link rel="stylesheet" href="./style_votacion.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  </head>
+  <body>
     <header class="hero">
-        <div class="hero-content">
-            <h1>Nuevo Centro Joven</h1>
-            <p class="subtitle">Ayuda a decidir dónde construir nuestro nuevo centro</p>
-            <div class="info-box">
-                <i class="fas fa-vote-yea"></i>
-                <p>Tu voto cuenta. Elige la mejor ubicación para el futuro centro joven de nuestro municipio.</p>
-            </div>
-            <a href="#votacion" class="button">Votar Ahora</a>
+      <div class="hero-content">
+        <h1>Nuevo Centro Joven</h1>
+        <p class="subtitle">Ayuda a decidir dónde construir nuestro nuevo centro</p>
+        <div class="info-box">
+          <i class="fas fa-vote-yea"></i>
+          <p>Tu voto cuenta. Elige la mejor ubicación para el futuro centro joven de nuestro municipio.</p>
         </div>
+        <a href="#votacion" class="button">Votar Ahora</a>
+      </div>
     </header>
 
     <section id="ubicaciones" class="section locations-section">
-        <div class="container">
-            <h2>Ubicaciones Propuestas</h2>
-            <div class="locations-grid">
-                <div class="location-item">
-                    <img src="images/lonja.png" alt="Centro Histórico">
-                    <h3><i class="fas fa-map-marker-alt"></i> Opción A: Centro Histórico</h3>
-                    <div class="location-details">
-                        <p><strong>Dirección:</strong> Plaza Mayor, junto al Ayuntamiento</p>
-                        <p><strong>Ventajas:</strong> Fácil acceso, transporte público, zona comercial</p>
-                        <p><strong>Superficie:</strong> 800 m²</p>
-                    </div>
-                </div>
-                <div class="location-item">
-                    <img src="images/piscina_cubierta.png" alt="Zona Deportiva">
-                    <h3><i class="fas fa-map-marker-alt"></i> Opción B: Zona Deportiva</h3>
-                    <div class="location-details">
-                        <p><strong>Dirección:</strong> Junto al Polideportivo Municipal</p>
-                        <p><strong>Ventajas:</strong> Instalaciones deportivas cercanas, amplio parking</p>
-                        <p><strong>Superficie:</strong> 1200 m²</p>
-                    </div>
-                </div>
-                <div class="location-item">
-                    <img src="images/cruz_caidos.png" alt="Parque Norte">
-                    <h3><i class="fas fa-map-marker-alt"></i> Opción C: Parque Norte</h3>
-                    <div class="location-details">
-                        <p><strong>Dirección:</strong> Parque Municipal Norte</p>
-                        <p><strong>Ventajas:</strong> Entorno natural, zona tranquila, espacios verdes</p>
-                        <p><strong>Superficie:</strong> 1000 m²</p>
-                    </div>
-                </div>
+      <div class="container">
+        <h2>Ubicaciones Propuestas</h2>
+        <div class="locations-grid">
+          <div class="location-item" style="background-image: url('images/lonja.png')">
+            <h3><i class="fas fa-map-marker-alt"></i> Opción A: Antigua lonja</h3>
+            <!--            
+              <div class="location-details">
+              <p><strong>Dirección:</strong> Plaza Mayor, junto al Ayuntamiento</p>
+              <p><strong>Ventajas:</strong> Fácil acceso, transporte público, zona comercial</p>
+              <p><strong>Superficie:</strong> 800 m²</p>
             </div>
+-->
+          </div>
+          <div class="location-item" style="background-image: url('images/piscina_cubierta.png')">
+            <h3><i class="fas fa-map-marker-alt"></i> Opción B: Zona Deportiva</h3>
+            <!--
+            <div class="location-details">
+              <p><strong>Dirección:</strong> Junto al Polideportivo Municipal</p>
+              <p><strong>Ventajas:</strong> Instalaciones deportivas cercanas, amplio parking</p>
+              <p><strong>Superficie:</strong> 1200 m²</p>
+            </div>
+-->
+          </div>
+          <div class="location-item" style="background-image: url('images/cruz_caidos.png')">
+            <h3><i class="fas fa-map-marker-alt"></i> Opción C: Cruz Caídos</h3>
+            <!--
+            <div class="location-details">
+              <p><strong>Dirección:</strong> Parque Municipal Norte</p>
+              <p><strong>Ventajas:</strong> Entorno natural, zona tranquila, espacios verdes</p>
+              <p><strong>Superficie:</strong> 1000 m²</p>
+            </div>
+-->
+          </div>
         </div>
+      </div>
     </section>
 
     <section id="votacion" class="section voting-section">
-        <div class="container">
-            <h2>Emite tu Voto</h2>
-            <p>Selecciona tu ubicación preferida para el nuevo centro joven. Solo puedes votar una vez.</p>
+      <div class="container">
+        <h2>Emite tu Voto</h2>
+        <p>Selecciona tu ubicación preferida para el nuevo centro joven. Solo puedes votar una vez.</p>
 
-            <div id="already-voted" class="already-voted" style="display: none;">
-                <div class="message-box warning">
-                    <i class="fas fa-check-circle"></i>
-                    <h3>Ya has votado</h3>
-                    <p>Tu voto ha sido registrado correctamente. Gracias por tu participación.</p>
-                </div>
-            </div>
-
-            <div class="voting-form" id="voting-form-container">
-                <form id="voting-form" action="TU_WEB_APP_URL_AQUI" method="POST">
-                    <div class="form-group">
-                        <label for="nombre">Nombre Completo:</label>
-                        <input type="text" id="nombre" name="nombre" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="dni">DNI (últimos 4 dígitos):</label>
-                        <input type="text" id="dni" name="dni" pattern="[0-9]{4}" maxlength="4" required>
-                        <small>Solo los últimos 4 dígitos para verificar identidad</small>
-                    </div>
-
-                    <div class="form-group radio-group">
-                        <label>Selecciona tu ubicación preferida:</label>
-                        <div class="vote-options">
-                            <div class="vote-option">
-                                <input type="radio" id="opcion-a" name="ubicacion" value="Centro Histórico" required>
-                                <label for="opcion-a">
-                                    <div class="option-content">
-                                        <strong>Opción A: Centro Histórico</strong>
-                                        <span>Plaza Mayor, junto al Ayuntamiento</span>
-                                    </div>
-                                </label>
-                            </div>
-                            <div class="vote-option">
-                                <input type="radio" id="opcion-b" name="ubicacion" value="Zona Deportiva" required>
-                                <label for="opcion-b">
-                                    <div class="option-content">
-                                        <strong>Opción B: Zona Deportiva</strong>
-                                        <span>Junto al Polideportivo Municipal</span>
-                                    </div>
-                                </label>
-                            </div>
-                            <div class="vote-option">
-                                <input type="radio" id="opcion-c" name="ubicacion" value="Parque Norte" required>
-                                <label for="opcion-c">
-                                    <div class="option-content">
-                                        <strong>Opción C: Parque Norte</strong>
-                                        <span>Parque Municipal Norte</span>
-                                    </div>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="comentarios">Comentarios adicionales (opcional):</label>
-                        <textarea id="comentarios" name="comentarios" rows="3" placeholder="Comparte tu opinión sobre la ubicación elegida..."></textarea>
-                    </div>
-
-                    <button type="submit" class="button">Enviar Voto</button>
-                    <p id="form-message" class="form-message"></p>
-                </form>
-            </div>
+        <div id="already-voted" class="already-voted" style="display: none">
+          <div class="message-box warning">
+            <i class="fas fa-check-circle"></i>
+            <h3>Ya has votado</h3>
+            <p>Tu voto ha sido registrado correctamente. Gracias por tu participación.</p>
+          </div>
         </div>
+
+        <div class="voting-form" id="voting-form-container">
+          <form id="voting-form" action="TU_WEB_APP_URL_AQUI" method="POST">
+            <div class="form-group">
+              <label for="nombre">Nombre Completo:</label>
+              <input type="text" id="nombre" name="nombre" required />
+            </div>
+
+            <div class="form-group">
+              <label for="dni">DNI (últimos 4 dígitos):</label>
+              <input type="text" id="dni" name="dni" pattern="[0-9]{4}" maxlength="4" required />
+              <small>Solo los últimos 4 dígitos para verificar identidad</small>
+            </div>
+
+            <div class="form-group radio-group">
+              <label>Selecciona tu ubicación preferida:</label>
+              <div class="vote-options">
+                <div class="vote-option">
+                  <input type="radio" id="opcion-a" name="ubicacion" value="Centro Histórico" required />
+                  <label for="opcion-a">
+                    <div class="option-content">
+                      <strong>Opción A: Centro Histórico</strong>
+                      <span>Plaza Mayor, junto al Ayuntamiento</span>
+                    </div>
+                  </label>
+                </div>
+                <div class="vote-option">
+                  <input type="radio" id="opcion-b" name="ubicacion" value="Zona Deportiva" required />
+                  <label for="opcion-b">
+                    <div class="option-content">
+                      <strong>Opción B: Zona Deportiva</strong>
+                      <span>Junto al Polideportivo Municipal</span>
+                    </div>
+                  </label>
+                </div>
+                <div class="vote-option">
+                  <input type="radio" id="opcion-c" name="ubicacion" value="Parque Norte" required />
+                  <label for="opcion-c">
+                    <div class="option-content">
+                      <strong>Opción C: Parque Norte</strong>
+                      <span>Parque Municipal Norte</span>
+                    </div>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="comentarios">Comentarios adicionales (opcional):</label>
+              <textarea
+                id="comentarios"
+                name="comentarios"
+                rows="3"
+                placeholder="Comparte tu opinión sobre la ubicación elegida..."
+              ></textarea>
+            </div>
+
+            <button type="submit" class="button">Enviar Voto</button>
+            <p id="form-message" class="form-message"></p>
+          </form>
+        </div>
+      </div>
     </section>
 
     <footer>
-        <div class="container">
-            <p>&copy; 2025 Ayuntamiento. Votación Centro Joven.</p>
-            <p><small>Esta votación es consultiva y forma parte del proceso de participación ciudadana.</small></p>
-        </div>
+      <div class="container">
+        <p>&copy; 2025 Ayuntamiento. Votación Centro Joven.</p>
+        <p><small>Esta votación es consultiva y forma parte del proceso de participación ciudadana.</small></p>
+      </div>
     </footer>
 
     <script src="./script_votacion.js"></script>
-</body>
+  </body>
 </html>
