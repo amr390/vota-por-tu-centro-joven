@@ -102,10 +102,18 @@ body {
 
 .location-item {
   background: #f8f9fa;
-  padding: 2rem;
+  padding: 0;
   border-radius: 15px;
   border-left: 5px solid #2c5aa0;
   transition: transform 0.3s ease;
+  overflow: hidden;
+}
+
+.location-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
 }
 
 .location-item:hover {
@@ -117,10 +125,15 @@ body {
   color: #2c5aa0;
   margin-bottom: 1rem;
   font-size: 1.3rem;
+  padding: 1.5rem 2rem 0;
 }
 
 .location-item h3 i {
   margin-right: 10px;
+}
+
+.location-details {
+  padding: 0 2rem 2rem;
 }
 
 .location-details p {
@@ -203,6 +216,23 @@ body {
   cursor: pointer;
   transition: all 0.3s ease;
   background: white;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.location-item:nth-child(1) label {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url('images/cruz_caidos.png');
+}
+
+.location-item:nth-child(2) label {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url('images/lonja.png');
+}
+
+.location-item:nth-child(3) label {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url('images/piscina_cubierta.png');
 }
 
 .vote-option label:hover {
