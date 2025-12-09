@@ -128,4 +128,65 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // Hacer clickeables los divs de ubicaciones
+    const locationItems = document.querySelectorAll('.location-item');
+    const nombreUsuario = document.getElementById('nombre-usuario');
+    
+    locationItems.forEach((item, index) => {
+        item.style.cursor = 'pointer';
+        item.addEventListener('click', function() {
+            const nombre = nombreUsuario.value.trim();
+            
+            if (!nombre) {
+                alert('Por favor, escribe tu nombre antes de votar');
+                nombreUsuario.focus();
+                return;
+            }
+            
+            if (checkIfAlreadyVoted()) {
+                return;
+            }
+            
+            locationItems.forEach(loc => loc.classList.remove('selected'));
+            this.classList.add('selected');
+            
+            const ubicaciones = ['Centro Histórico', 'Zona Deportiva', 'Parque Norte'];
+            const ubicacionSeleccionada = ubicaciones[index];
+            
+            enviarVoto(nombre, ubicacionSeleccionada);
+        });
+    });
+    
+    function enviarVoto(nombre, ubicacion) {
+        const formData = new FormData();
+        formData.append('nombre', nombre);
+        formData.append('ubicacion', ubicacion);
+        formData.append('timestamp', new Date().toISOString());
+        
+        const votingForm = document.getElementById('voting-form');
+        const url = votingForm ? votingForm.action : 'TU_WEB_APP_URL_AQUI';
+        
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.result === 'success') {
+                alert('¡Tu voto ha sido registrado correctamente! Gracias por participar.');
+                markAsVoted();
+                nombreUsuario.disabled = true;
+            } else if (data.result === 'duplicate') {
+                alert('Ya existe un voto registrado con estos datos.');
+                markAsVoted();
+            } else {
+                alert('Error al registrar el voto: ' + (data.error || 'Error desconocido'));
+            }
+        })
+        .catch(error => {
+            console.error('Error durante el envío:', error);
+            alert('Error de conexión. Por favor, inténtalo de nuevo más tarde.');
+        });
+    }
 });

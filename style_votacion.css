@@ -93,6 +93,34 @@ body {
   background: white;
 }
 
+.user-input-section {
+  max-width: 600px;
+  margin: 0 auto 3rem;
+  text-align: center;
+}
+
+.user-input-section label {
+  display: block;
+  margin-bottom: 0.8rem;
+  font-weight: 600;
+  color: #2c5aa0;
+  font-size: 1.2rem;
+}
+
+.user-input-section input {
+  width: 100%;
+  padding: 15px;
+  border: 2px solid #e9ecef;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  transition: border-color 0.3s ease;
+}
+
+.user-input-section input:focus {
+  outline: none;
+  border-color: #2c5aa0;
+}
+
 .locations-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -115,6 +143,12 @@ body {
 .location-item:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.location-item.selected {
+  border-left: 5px solid #ffd700;
+  box-shadow: 0 10px 30px rgba(44, 90, 160, 0.3);
+  transform: scale(1.05);
 }
 
 .location-item h3 {
@@ -143,7 +177,7 @@ body {
 
 /* Sección de votación */
 .voting-section {
-  background: #f8f9fa;
+  display: none;
 }
 
 .voting-form {
@@ -188,10 +222,8 @@ body {
 }
 
 /* Opciones de voto */
-.vote-options {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+.radio-group {
+  display: none;
 }
 
 .vote-option {
