@@ -10,34 +10,37 @@ function doPost(e) {
     const comentarios = e.parameter.comentarios || '';
     const voteHash = e.parameter.vote_hash;
     const timestamp = e.parameter.timestamp;
-    
+
     // Validar datos requeridos
     if (!nombre || !dni || !ubicacion || !voteHash) {
-      return ContentService
-        .createTextOutput(JSON.stringify({
+      return ContentService.createTextOutput(
+        JSON.stringify({
           result: 'error',
-          error: 'Faltan datos requeridos'
-        }))
-        .setMimeType(ContentService.MimeType.JSON);
+          error: 'Faltan datos requeridos',
+        }),
+      ).setMimeType(ContentService.MimeType.JSON);
     }
-    
+
     // Abrir la hoja de cálculo (reemplaza con tu ID de Google Sheets)
-    const spreadsheetId = 'TU_SPREADSHEET_ID_AQUI';
+    const spreadsheetId =
+      'https://script.google.com/macros/s/AKfycbwAAC7VqTso7rA-RcJTIJ4ztnOaRx7J3gM8Bo5LvOpxMASqoXrGK2ghpzDtetoe7YDgQQ/exec';
     const sheet = SpreadsheetApp.openById(spreadsheetId).getActiveSheet();
-    
+
     // Verificar si ya existe un voto con el mismo hash
     const data = sheet.getDataRange().getValues();
-    for (let i = 1; i < data.length; i++) { // Empezar desde 1 para saltar headers
-      if (data[i][5] === voteHash) { // Columna F contiene el hash
-        return ContentService
-          .createTextOutput(JSON.stringify({
+    for (let i = 1; i < data.length; i++) {
+      // Empezar desde 1 para saltar headers
+      if (data[i][5] === voteHash) {
+        // Columna F contiene el hash
+        return ContentService.createTextOutput(
+          JSON.stringify({
             result: 'duplicate',
-            error: 'Ya existe un voto registrado con estos datos'
-          }))
-          .setMimeType(ContentService.MimeType.JSON);
+            error: 'Ya existe un voto registrado con estos datos',
+          }),
+        ).setMimeType(ContentService.MimeType.JSON);
       }
     }
-    
+
     // Si es la primera fila, agregar headers
     if (sheet.getLastRow() === 0) {
       sheet.appendRow([
@@ -47,38 +50,29 @@ function doPost(e) {
         'Ubicación Elegida',
         'Comentarios',
         'Hash de Voto',
-        'Fecha Registro'
+        'Fecha Registro',
       ]);
     }
-    
+
     // Agregar el nuevo voto
-    sheet.appendRow([
-      new Date(),
-      nombre,
-      dni,
-      ubicacion,
-      comentarios,
-      voteHash,
-      timestamp
-    ]);
-    
+    sheet.appendRow([new Date(), nombre, dni, ubicacion, comentarios, voteHash, timestamp]);
+
     // Respuesta exitosa
-    return ContentService
-      .createTextOutput(JSON.stringify({
+    return ContentService.createTextOutput(
+      JSON.stringify({
         result: 'success',
-        message: 'Voto registrado correctamente'
-      }))
-      .setMimeType(ContentService.MimeType.JSON);
-      
+        message: 'Voto registrado correctamente',
+      }),
+    ).setMimeType(ContentService.MimeType.JSON);
   } catch (error) {
     // Manejar errores
     console.error('Error en doPost:', error);
-    return ContentService
-      .createTextOutput(JSON.stringify({
+    return ContentService.createTextOutput(
+      JSON.stringify({
         result: 'error',
-        error: 'Error interno del servidor: ' + error.toString()
-      }))
-      .setMimeType(ContentService.MimeType.JSON);
+        error: 'Error interno del servidor: ' + error.toString(),
+      }),
+    ).setMimeType(ContentService.MimeType.JSON);
   }
 }
 
@@ -87,15 +81,15 @@ function getVotingStats() {
   try {
     const spreadsheetId = 'TU_SPREADSHEET_ID_AQUI';
     const sheet = SpreadsheetApp.openById(spreadsheetId).getActiveSheet();
-    
+
     const data = sheet.getDataRange().getValues();
     const stats = {
       'Centro Histórico': 0,
       'Zona Deportiva': 0,
       'Parque Norte': 0,
-      total: 0
+      total: 0,
     };
-    
+
     // Contar votos (empezar desde 1 para saltar headers)
     for (let i = 1; i < data.length; i++) {
       const ubicacion = data[i][3]; // Columna D contiene la ubicación
@@ -104,7 +98,7 @@ function getVotingStats() {
         stats.total++;
       }
     }
-    
+
     return stats;
   } catch (error) {
     console.error('Error obteniendo estadísticas:', error);
