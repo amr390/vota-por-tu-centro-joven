@@ -58,26 +58,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const formData = new FormData(this);
 
-      // Crear hash único con UUID
+      // Crear FormData con los datos para Google Sheets
       const nombre = formData.get('Nombre');
       const voto = formData.get('ubicacion');
       const voteHash = getOrCreateUUID();
       
-      // Crear objeto con los datos para Google Sheets
-      const voteData = {
-        timestamp: new Date().toISOString(),
-        nombre: nombre,
-        voto: voto,
-        vote_hash: voteHash
-      };
+      formData.append('timestamp', new Date().toISOString());
+      formData.append('vote_hash', voteHash);
 
-      // Enviar datos como JSON
+      // Enviar datos como FormData
       fetch(this.action, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(voteData),
+        body: formData,
       })
         .then(response => {
           if (!response.ok) {
@@ -156,22 +148,18 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   function enviarVoto(nombre, ubicacion) {
-    const voteData = {
-      timestamp: new Date().toISOString(),
-      nombre: nombre,
-      voto: ubicacion,
-      vote_hash: getOrCreateUUID()
-    };
+    const formData = new FormData();
+    formData.append('Nombre', nombre);
+    formData.append('ubicacion', ubicacion);
+    formData.append('timestamp', new Date().toISOString());
+    formData.append('vote_hash', getOrCreateUUID());
 
     const votingForm = document.getElementById('voting-form');
     const url = votingForm ? votingForm.action : 'TU_WEB_APP_URL_AQUI';
 
     fetch(url, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(voteData),
+      body: formData,
     })
       .then(response => response.json())
       .then(data => {
