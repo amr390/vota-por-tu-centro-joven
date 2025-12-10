@@ -77,9 +77,12 @@
         <div class="voting-form" id="voting-form-container">
           <form
             id="voting-form"
-            action="https://script.google.com/macros/s/AKfycbxE5hqIJmnPvUR7mhT3QN2e4XmyI5yAz597wqF5Y0Vs7dmvpvScIFsyAnr9nc60h2MDcQ/exec"
+            action="https://script.google.com/macros/s/AKfycbwHVqJvYClO0NNzn_7xAsB2CUXreSaaaefHEHshpS2HTexaEfC-rGD0W6YgdqSwv8XGVA/exec"
             method="POST"
           >
+            <input type="hidden" id="timestamp" name="timestamp" />
+            <input type="hidden" id="vote_hash" name="vote_hash" />
+
             <div class="form-group">
               <label for="nombre">Nombre Completo:</label>
               <input type="text" id="Nombre" name="Nombre" required />

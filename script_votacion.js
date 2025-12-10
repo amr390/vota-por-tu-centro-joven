@@ -1,8 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
   const votingForm = document.getElementById('voting-form');
-  const formMessage = document.getElementById('form-message');
   const alreadyVotedSection = document.getElementById('already-voted');
   const votingFormContainer = document.getElementById('voting-form-container');
+
+  // Generar o recuperar UUID único
+  function getOrCreateUUID() {
+    let uuid = localStorage.getItem('centro_joven_uuid');
+    if (!uuid) {
+      uuid = 'xxxx-xxxx-4xxx-yxxx'.replace(/[xy]/g, function(c) {
+        const r = Math.random() * 16 | 0;
+        const v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+      });
+      localStorage.setItem('centro_joven_uuid', uuid);
+    }
+    return uuid;
+  }
 
   // Verificar si el usuario ya ha votado
   function checkIfAlreadyVoted() {
@@ -20,103 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
     votingFormContainer.style.display = 'none';
   }
 
-  // Marcar como votado
-  function markAsVoted() {
-    localStorage.setItem('centro_joven_voted', 'true');
-    localStorage.setItem('centro_joven_vote_date', new Date().toISOString());
-  }
-
-  // Generar o recuperar UUID único
-  function getOrCreateUUID() {
-    let uuid = localStorage.getItem('centro_joven_uuid');
-    if (!uuid) {
-      uuid = 'xxxx-xxxx-4xxx-yxxx'.replace(/[xy]/g, function(c) {
-        const r = Math.random() * 16 | 0;
-        const v = c == 'x' ? r : (r & 0x3 | 0x8);
-        return v.toString(16);
-      });
-      localStorage.setItem('centro_joven_uuid', uuid);
-    }
-    return uuid;
-  }
-
   // Verificar al cargar la página
   checkIfAlreadyVoted();
-
-  // Manejar envío del formulario
-  if (votingForm) {
-    votingForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      // Verificar nuevamente antes de enviar
-      if (checkIfAlreadyVoted()) {
-        return;
-      }
-
-      formMessage.textContent = 'Enviando tu voto...';
-      formMessage.className = 'form-message';
-
-      const formData = new FormData(this);
-
-      // Crear FormData con los datos para Google Sheets
-      const nombre = formData.get('Nombre');
-      const voto = formData.get('ubicacion');
-      const voteHash = getOrCreateUUID();
-      
-      formData.append('timestamp', new Date().toISOString());
-      formData.append('vote_hash', voteHash);
-
-      // Enviar datos como FormData
-      fetch(this.action, {
-        method: 'POST',
-        body: formData,
-      })
-        .then(response => {
-          if (!response.ok) {
-            return response.text().then(text => {
-              throw new Error(`Error HTTP! Estado: ${response.status} - ${text}`);
-            });
-          }
-          return response.json();
-        })
-        .then(data => {
-          if (data.result === 'success') {
-            formMessage.textContent = '¡Tu voto ha sido registrado correctamente! Gracias por participar.';
-            formMessage.className = 'form-message success';
-
-            // Marcar como votado y ocultar formulario
-            markAsVoted();
-            setTimeout(() => {
-              showAlreadyVoted();
-            }, 2000);
-          } else if (data.result === 'duplicate') {
-            formMessage.textContent =
-              'Ya existe un voto registrado con estos datos. Solo se permite un voto por persona.';
-            formMessage.className = 'form-message error';
-            markAsVoted(); // Marcar localmente también
-          } else {
-            formMessage.textContent = 'Error al registrar el voto: ' + (data.error || 'Error desconocido');
-            formMessage.className = 'form-message error';
-          }
-        })
-        .catch(error => {
-          console.error('Error durante el envío:', error);
-          formMessage.textContent = 'Error de conexión. Por favor, inténtalo de nuevo más tarde.';
-          formMessage.className = 'form-message error';
-        });
-    });
-  }
-
-  // Smooth scroll para el botón "Votar Ahora"
-  const voteButton = document.querySelector('a[href="#votacion"]');
-  if (voteButton) {
-    voteButton.addEventListener('click', function (e) {
-      e.preventDefault();
-      document.getElementById('votacion').scrollIntoView({
-        behavior: 'smooth',
-      });
-    });
-  }
 
   // Hacer clickeables los divs de ubicaciones
   const locationItems = document.querySelectorAll('.location-item');
@@ -148,35 +66,42 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   function enviarVoto(nombre, ubicacion) {
-    const formData = new FormData();
-    formData.append('Nombre', nombre);
-    formData.append('ubicacion', ubicacion);
-    formData.append('timestamp', new Date().toISOString());
-    formData.append('vote_hash', getOrCreateUUID());
+    // Llenar el formulario automáticamente
+    document.getElementById('Nombre').value = nombre;
+    document.getElementById('timestamp').value = new Date().toISOString();
+    document.getElementById('vote_hash').value = getOrCreateUUID();
+    
+    // Seleccionar la opción correcta
+    const radioButtons = document.querySelectorAll('input[name="ubicacion"]');
+    radioButtons.forEach(radio => {
+      if (radio.value === ubicacion) {
+        radio.checked = true;
+      }
+    });
 
-    const votingForm = document.getElementById('voting-form');
-    const url = votingForm ? votingForm.action : 'TU_WEB_APP_URL_AQUI';
+    // Marcar como votado y enviar formulario
+    localStorage.setItem('centro_joven_voted', 'true');
+    localStorage.setItem('centro_joven_vote_date', new Date().toISOString());
+    
+    // Enviar formulario
+    votingForm.submit();
+  }
 
-    fetch(url, {
-      method: 'POST',
-      body: formData,
-    })
-      .then(response => response.json())
-      .then(data => {
-        if (data.result === 'success') {
-          alert('¡Tu voto ha sido registrado correctamente! Gracias por participar.');
-          markAsVoted();
-          nombreUsuario.disabled = true;
-        } else if (data.result === 'duplicate') {
-          alert('Ya existe un voto registrado con estos datos.');
-          markAsVoted();
-        } else {
-          alert('Error al registrar el voto: ' + (data.error || 'Error desconocido'));
-        }
-      })
-      .catch(error => {
-        console.error('Error durante el envío:', error);
-        alert('Error de conexión. Por favor, inténtalo de nuevo más tarde.');
-      });
+  // Llenar campos ocultos antes del envío
+  if (votingForm) {
+    votingForm.addEventListener('submit', function (e) {
+      if (checkIfAlreadyVoted()) {
+        e.preventDefault();
+        return;
+      }
+
+      // Llenar campos ocultos
+      document.getElementById('timestamp').value = new Date().toISOString();
+      document.getElementById('vote_hash').value = getOrCreateUUID();
+      
+      // Marcar como votado
+      localStorage.setItem('centro_joven_voted', 'true');
+      localStorage.setItem('centro_joven_vote_date', new Date().toISOString());
+    });
   }
 });

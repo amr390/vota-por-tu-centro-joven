@@ -1,6 +1,6 @@
 function doPost(e) {
   try {
-    const sheet = SpreadsheetApp.openById('1iCa6u5Bg6JjYZGTQI-jUCr6z6Qp4ZcpLhm4d5TMDknI').getActiveSheet();
+    const sheet = SpreadsheetApp.openById('T1iCa6u5Bg6JjYZGTQI-jUCr6z6Qp4ZcpLhm4d5TMDkn').getActiveSheet();
 
     // Obtener datos del formulario
     const timestamp = e.parameter.timestamp;
