@@ -29,33 +29,15 @@
         <div class="locations-grid">
           <div class="location-item" style="background-image: url('images/lonja.jpeg')">
             <h3><i class="fas fa-map-marker-alt"></i> Opción A <br />Antigua lonja</h3>
-            <!--            
-              <div class="location-details">
-              <p><strong>Dirección:</strong> Plaza Mayor, junto al Ayuntamiento</p>
-              <p><strong>Ventajas:</strong> Fácil acceso, transporte público, zona comercial</p>
-              <p><strong>Superficie:</strong> 800 m²</p>
-            </div>
--->
+            <button class="vote-button" data-option="0">Votar</button>
           </div>
           <div class="location-item" style="background-image: url('images/piscina_cubierta.jpeg')">
             <h3><i class="fas fa-map-marker-alt"></i> Opción B <br />Zona Deportiva</h3>
-            <!--
-            <div class="location-details">
-              <p><strong>Dirección:</strong> Junto al Polideportivo Municipal</p>
-              <p><strong>Ventajas:</strong> Instalaciones deportivas cercanas, amplio parking</p>
-              <p><strong>Superficie:</strong> 1200 m²</p>
-            </div>
--->
+            <button class="vote-button" data-option="1">Votar</button>
           </div>
           <div class="location-item" style="background-image: url('images/casco_antiguo.jpeg')">
             <h3><i class="fas fa-map-marker-alt"></i> Opción C <br />Casco antiguo</h3>
-            <!--
-            <div class="location-details">
-              <p><strong>Dirección:</strong> Parque Municipal Norte</p>
-              <p><strong>Ventajas:</strong> Entorno natural, zona tranquila, espacios verdes</p>
-              <p><strong>Superficie:</strong> 1000 m²</p>
-            </div>
--->
+            <button class="vote-button" data-option="2">Votar</button>
           </div>
         </div>
       </div>
@@ -144,6 +126,8 @@
         <p><small>Esta votación es consultiva y forma parte del proceso de participación ciudadana.</small></p>
       </div>
     </footer>
+
+    <div id="toast" class="toast"></div>
 
     <script src="./script_votacion.js"></script>
   </body>

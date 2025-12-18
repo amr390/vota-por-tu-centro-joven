@@ -3,6 +3,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const alreadyVotedSection = document.getElementById('already-voted');
   const votingFormContainer = document.getElementById('voting-form-container');
 
+  // Función para mostrar toast
+  function showToast(message, type = 'success') {
+    const toast = document.getElementById('toast');
+    toast.textContent = message;
+    toast.className = `toast ${type}`;
+    
+    setTimeout(() => toast.classList.add('show'), 100);
+    
+    setTimeout(() => {
+      toast.classList.remove('show');
+    }, 3000);
+  }
+
   // Generar o recuperar UUID único
   function getOrCreateUUID() {
     let uuid = localStorage.getItem('centro_joven_uuid');
@@ -31,18 +44,20 @@ document.addEventListener('DOMContentLoaded', () => {
   function showAlreadyVoted() {
     alreadyVotedSection.style.display = 'block';
     votingFormContainer.style.display = 'none';
+    showToast('Ya has votado anteriormente', 'warning');
   }
 
   // Verificar al cargar la página
   checkIfAlreadyVoted();
 
-  // Hacer clickeables los divs de ubicaciones
-  const locationItems = document.querySelectorAll('.location-item');
+  // Hacer clickeables los botones de votación
+  const voteButtons = document.querySelectorAll('.vote-button');
   const nombreUsuario = document.getElementById('nombre-usuario');
 
-  locationItems.forEach((item, index) => {
-    item.style.cursor = 'pointer';
-    item.addEventListener('click', function () {
+  voteButtons.forEach((button) => {
+    button.addEventListener('click', function (e) {
+      e.preventDefault();
+      
       const nombre = nombreUsuario.value.trim();
 
       if (!nombre) {
@@ -52,14 +67,18 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       if (checkIfAlreadyVoted()) {
+        showToast('Ya has votado anteriormente', 'warning');
         return;
       }
 
-      locationItems.forEach(loc => loc.classList.remove('selected'));
-      this.classList.add('selected');
-
+      const optionIndex = parseInt(this.getAttribute('data-option'));
       const ubicaciones = ['Centro Histórico', 'Zona Deportiva', 'Parque Norte'];
-      const ubicacionSeleccionada = ubicaciones[index];
+      const ubicacionSeleccionada = ubicaciones[optionIndex];
+
+      // Marcar visualmente la selección
+      const locationItems = document.querySelectorAll('.location-item');
+      locationItems.forEach(loc => loc.classList.remove('selected'));
+      this.closest('.location-item').classList.add('selected');
 
       enviarVoto(nombre, ubicacionSeleccionada);
     });
@@ -83,8 +102,13 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem('centro_joven_voted', 'true');
     localStorage.setItem('centro_joven_vote_date', new Date().toISOString());
     
-    // Enviar formulario
-    votingForm.submit();
+    // Mostrar toast de agradecimiento
+    showToast('¡Gracias por votar!', 'success');
+    
+    // Enviar formulario después de un breve delay
+    setTimeout(() => {
+      votingForm.submit();
+    }, 1000);
   }
 
   // Llenar campos ocultos antes del envío
