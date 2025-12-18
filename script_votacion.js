@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const nombre = nombreUsuario.value.trim();
 
       if (!nombre) {
-        alert('Por favor, escribe tu nombre antes de votar');
+        showToast('Por favor, escribe tu nombre antes de votar', 'warning');
         nombreUsuario.focus();
         return;
       }
@@ -85,47 +85,53 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   function enviarVoto(nombre, ubicacion) {
-    // Llenar el formulario automáticamente
-    document.getElementById('Nombre').value = nombre;
-    document.getElementById('timestamp').value = new Date().toISOString();
-    document.getElementById('vote_hash').value = getOrCreateUUID();
-    
-    // Seleccionar la opción correcta
-    const radioButtons = document.querySelectorAll('input[name="ubicacion"]');
-    radioButtons.forEach(radio => {
-      if (radio.value === ubicacion) {
-        radio.checked = true;
-      }
-    });
+    // Preparar datos del formulario
+    const formData = new FormData();
+    formData.append('Nombre', nombre);
+    formData.append('ubicacion', ubicacion);
+    formData.append('timestamp', new Date().toISOString());
+    formData.append('vote_hash', getOrCreateUUID());
 
-    // Marcar como votado y enviar formulario
+    // Marcar como votado
     localStorage.setItem('centro_joven_voted', 'true');
     localStorage.setItem('centro_joven_vote_date', new Date().toISOString());
     
     // Mostrar toast de agradecimiento
     showToast('¡Gracias por votar!', 'success');
     
-    // Enviar formulario después de un breve delay
-    setTimeout(() => {
-      votingForm.submit();
-    }, 1000);
+    // Enviar con fetch
+    fetch(votingForm.action, {
+      method: 'POST',
+      body: formData
+    }).then(() => {
+      // Mostrar sección de ya votado después del envío
+      setTimeout(() => {
+        showAlreadyVoted();
+      }, 2000);
+    }).catch(() => {
+      showToast('Error al enviar el voto', 'warning');
+    });
   }
 
-  // Llenar campos ocultos antes del envío
+  // Prevenir envío tradicional del formulario
   if (votingForm) {
     votingForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      
       if (checkIfAlreadyVoted()) {
-        e.preventDefault();
+        showToast('Ya has votado anteriormente', 'warning');
         return;
       }
 
-      // Llenar campos ocultos
-      document.getElementById('timestamp').value = new Date().toISOString();
-      document.getElementById('vote_hash').value = getOrCreateUUID();
+      const nombre = document.getElementById('Nombre').value.trim();
+      const ubicacionRadio = document.querySelector('input[name="ubicacion"]:checked');
       
-      // Marcar como votado
-      localStorage.setItem('centro_joven_voted', 'true');
-      localStorage.setItem('centro_joven_vote_date', new Date().toISOString());
+      if (!nombre || !ubicacionRadio) {
+        showToast('Por favor completa todos los campos', 'warning');
+        return;
+      }
+
+      enviarVoto(nombre, ubicacionRadio.value);
     });
   }
 });
